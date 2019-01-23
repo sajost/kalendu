@@ -1,0 +1,11 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"svn.path": "c:\\Users\\Public\\smartsvn\\bin\\smartsvn.exe",
+		"svn.ignoreMissingSvnWarning": true
+	}
+}

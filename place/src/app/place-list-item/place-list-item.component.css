@@ -1,0 +1,20 @@
+.jumbotron {
+    border-bottom-right-radius: 70px;
+    padding: 0.8rem;
+}
+
+.avatar {
+    width: 80%;
+    clip-path: circle();
+    border-radius: 50%;
+}
+
+p {
+    margin: 0;
+}
+
+.btn {
+    border-radius: 3rem;
+    padding: .3rem;
+    width: 3rem;
+}

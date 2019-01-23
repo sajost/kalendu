@@ -1,0 +1,228 @@
+<app-a-header>
+</app-a-header>
+
+<div class="container">
+    <p class="path">
+        Orte
+        <span class="text-danger">&nbsp;&gt;&gt;&nbsp;</span>
+        <a [routerLink]="['/places']">
+      Spielstätten
+    </a>
+        <span class="text-danger">&nbsp;&gt;&gt;&nbsp;</span>
+        <a [routerLink]="['/groups']" [queryParams]="{place_id:place.id}">
+      Gruppen 
+    </a>
+        <span class="text-danger">&nbsp;&gt;&gt;&nbsp;</span> Spielrunde
+    </p>
+    <div class="row no-gutters">
+        <div class="col-6">
+            <h3>{{place.title}}</h3>
+        </div>
+        <div class="col-4"></div>
+        <div class="col-1">
+            <img src="https://soccer-center-bonn.de/assets/images/dsc-189-2000x1125.jpg" class="avatar">
+        </div>
+        <div class="col-1">
+            <a class="">
+                <!-- <div class="btn btn-outline-dark">
+                    <fa-icon icon="lock" class="" size="2x"></fa-icon>
+                </div> -->
+            </a>
+        </div>
+    </div>
+    <div class="row no-gutters">
+        <div class="col-1">
+            <p class="text-left ">Adresse:</p>
+        </div>
+        <div class="col-5">
+            <p class="text-left ">{{place.street}} {{place.nr}}</p>
+            <p class="text-left ">{{place.zip}} {{place.city}}</p>
+        </div>
+        <div class="col-4"></div>
+        <div class="col-2">
+            <a class="btn btn-outline-dark btn-round" target="_blank" href="https://www.google.com/maps/search/?api=1&query={{place.street}} {{place.nr}} {{place.zip}} {{place.city}}">
+                <fa-icon icon="location-arrow" class="" size=""></fa-icon>
+            </a>
+            <a class="btn btn-outline-dark btn-round" (click)="onSubscribeToNotifications()">
+                <fa-icon icon="bell" class="" size=""></fa-icon>
+            </a>
+            <a class="btn btn-outline-dark btn-round" (click)="onSendNotifications()">
+                <fa-icon icon="flag-checkered" class="" size=""></fa-icon>
+            </a>
+        </div>
+    </div>
+    <div class="row no-gutters">
+        <div class="col-1">
+            <p class="text-left ">Info:</p>
+        </div>
+        <div class="col-10">
+            <p class="text-left ">{{place.info}}</p>
+        </div>
+    </div>
+    <div class="row no-gutters">
+        <div class="col-6">
+            <h3>{{group.title}} &nbsp;&gt;&gt;&nbsp;Spielrunde</h3>
+        </div>
+        <div class="col-5"></div>
+        <div class="col-1">
+            <button type="button" class="btn btn-outline-dark btn-round" (click)="onGameNewDlg(dlggamenew)">
+            <!-- <div class="btn btn-outline-dark btn-round"> -->
+                <fa-icon icon="plus" class="" size=""></fa-icon>
+            </button>
+        </div>
+    </div>
+    <div *ngFor="let game of games">
+        <app-game-list-item [game]="game" [groupTitle]="group.title" [place]="place" (remove)='onGameRemoveDlg($event)' (play)='onPlayGame($event)'></app-game-list-item>
+    </div>
+
+</div>
+
+
+<!-- DIALOG -->
+<!-- ******************************** -->
+<!-- SPIELRUNDE NEU -->
+<ng-template #dlggamenew let-modal>
+    <!-- <div class="modal-content"> -->
+    <div class="modal-header">
+        <span class="modal-title">Neue Spielrunde</span>
+        <button type="button" class="close" (click)="modal.dismiss('close')">
+                <span aria-hidden="true">&times;</span>
+            </button>
+    </div>
+    <div class="modal-body bg-secondary">
+        <ngb-carousel #dlggamenewCarousel="ngbCarousel">
+            <ng-template ngbSlide>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-1"></div>
+                        <div class="col-10">
+                            <h3>Neue Runde?</h3>
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control" placeholder="Name" ngbAutofocus [(ngModel)]="gameNew.title" (keyup.enter)="dlggamenewCarousel.next()">
+                                <!-- <div class="input-group-append">
+                                        <a class="btn fa-button" role="button" role="button" (click)="dlggamenewCarousel.next()">
+                                            <fa-icon icon="arrow-right" class="fa-btn" size="lg"></fa-icon>
+                                        </a>
+                                    </div> -->
+                            </div>
+                        </div>
+                        <div class="col-1"></div>
+                    </div>
+                </div>
+            </ng-template>
+            <ng-template ngbSlide>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-1"></div>
+                        <div class="col-10 text-center">
+                            <h3>Wann spielen wir? Datum</h3>
+                            <div class="input-group mb-3">
+                                <input class="form-control" placeholder="dd.mm.yyyy" name="dt" autofocus (focus)="d.open()" [(ngModel)]="gameNew.dt" ngbDatepicker #d="ngbDatepicker" (keyup.enter)="dlggamenewCarousel.next()">
+                                <!-- <div class="input-group-append">
+                                        <div class="btn-group position-static">
+                                            <a class="btn fa-button" role="button" role="button" (click)="d.toggle()">
+                                                <fa-icon icon="calendar-alt" class="fa-btn" size="lg"></fa-icon>
+                                            </a>
+                                        </div>
+                                    </div> -->
+                            </div>
+                        </div>
+                        <div class="col-1"></div>
+                    </div>
+                </div>
+            </ng-template>
+            <ng-template ngbSlide>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-1"></div>
+                        <div class="col-10 text-center">
+                            <h3>Wann spielen wir? Zeit</h3>
+                            <div class="input-group mb-3 justify-content-center">
+                                <ngb-timepicker [(ngModel)]="gameNew.dtt" [minuteStep]="15"></ngb-timepicker>
+                            </div>
+                        </div>
+                        <div class="col-1"></div>
+                    </div>
+                </div>
+            </ng-template>
+            <ng-template ngbSlide>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-1"></div>
+                        <div class="col-10 text-center">
+                            <h3>Wann ist Deadline?</h3>
+                            <div class="input-group mb-3">
+                                <input class="form-control" placeholder="dd.mm.yyyy" name="dd" autofocus (focus)="d.open()" [(ngModel)]="gameNew.dd" ngbDatepicker #d="ngbDatepicker" (keyup.enter)="dlggamenewCarousel.next()">
+                                <!-- <div class="input-group-append">
+                                        <div class="btn-group position-static">
+                                            <a class="btn fa-button" role="button" role="button" (click)="d.toggle()">
+                                                <fa-icon icon="calendar-alt" class="fa-btn" size="lg"></fa-icon>
+                                            </a>
+                                        </div>
+                                    </div> -->
+                            </div>
+                        </div>
+                        <div class="col-1"></div>
+                    </div>
+                </div>
+            </ng-template>
+            <ng-template ngbSlide>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-1"></div>
+                        <div class="col-10 text-center">
+                            <h3>Wann ist Deadline? Zeit</h3>
+                            <div class="input-group mb-3 justify-content-center">
+                                <ngb-timepicker [(ngModel)]="gameNew.ddt" [minuteStep]="15"></ngb-timepicker>
+                            </div>
+                        </div>
+                        <div class="col-1"></div>
+                    </div>
+                </div>
+            </ng-template>
+            <ng-template ngbSlide>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-1"></div>
+                        <div class="col-10 text-center">
+                            <h3>Jertig?</h3>
+                            <a class="btn fa-button dlg-spielrunde-edit-ok" role="button" (click)="modal.close('oknew')">
+                                <fa-icon icon="edit" class="fa-btn" size="lg"></fa-icon>
+                            </a>
+                        </div>
+                        <div class="col-1"></div>
+                    </div>
+                </div>
+            </ng-template>
+        </ngb-carousel>
+    </div>
+    <!-- </div> -->
+</ng-template>
+
+<!-- ABSAGE -->
+<ng-template #dlgremove let-modal>
+    <div class="modal-header">
+        <span class="modal-title">Löschen?</span>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('close')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body bg-outline-dark">
+        <div class="container">
+            <div class="row">
+                <div class="col-1"></div>
+                <div class="col-10">
+                    <h3>Wirklisch löschen?</h3>
+                </div>
+                <div class="col-1"></div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-danger" ngbAutofocus (click)="modal.close('dlgremove')">Ja</button>
+        <button type="button" class="btn btn-outline-dark" (click)="modal.close('dlgclose')">Nein</button>
+    </div>
+</ng-template>
+
+
+<app-a-footer></app-a-footer>

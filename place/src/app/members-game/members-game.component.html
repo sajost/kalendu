@@ -1,0 +1,374 @@
+<app-a-header>
+</app-a-header>
+
+<div class="container">
+    <p class="path">
+        <a [routerLink]="['/groups']" [queryParams]="{place_id: place.id}">
+      {{place.title}}
+    </a>
+        <span class="text-danger">&nbsp;&gt;&gt;&nbsp;</span>
+        <a [routerLink]="['/gamesg']" [queryParams]="{place_id:place.id, group_id:group.id}">
+      {{group.title}}
+    </a>
+        <span class="text-danger">&nbsp;&gt;&gt;&nbsp;</span> Spielrunde {{ game.dt | date:'dd.MM.yyyy' }}
+    </p>
+    <div class="row no-gutters">
+        <div class="col-6">
+            <h3>{{place.title}}</h3>
+            <p class="text-left text-secondary">
+                <fa-icon icon="calendar-check" class=""></fa-icon>
+                {{ game.dt | date:'EEEE, dd.MM.yyyy' }}
+                <fa-icon icon="clock" class=""></fa-icon>
+                {{ game.dt | date:'HH:mm' }} Uhr
+            </p>
+        </div>
+        <div class="col-1"></div>
+        <div class="col-2">
+            <div class="flex-row">
+                <button type="button" class="btn btn-outline-dark">
+                  <span>MIN</span>
+                  <span>{{game.min}}</span>
+                </button>
+                <button type="button" class="btn btn-outline-dark">
+                  <span>MAX</span>
+                  <span>{{game.max}}</span>
+              </button>
+            </div>
+        </div>
+        <div class="col-1"></div>
+        <div class="col-1">
+            <a class="">
+                <div class="btn btn-outline-dark">
+                    <fa-icon icon="sliders-h" class="" size="1x"></fa-icon>
+                </div>
+                <div class="btn btn-outline-dark">
+                    <fa-icon icon="share-alt" class="" size="1x"></fa-icon>
+                </div>
+            </a>
+        </div>
+        <div class="col-1"></div>
+    </div>
+
+    <!-- DEADLINE -->
+    <div class="row my-1 bg-ghostwhite">
+        <div class="col-3 d-flex align-items-center">
+            <button type="button" class="btn btn-outline-dark">
+                <span>ZUSAGEN</span><br>
+                <span class="text-danger font-weight-bold">{{membersa.length}}</span>
+                <span>/{{game.max}}</span> 
+              </button>
+        </div>
+        <div class="col-3 d-flex align-items-center">
+            <button type="button" class="btn btn-outline-dark">
+                <span>ABSAGEN</span><br>
+                <span class="font-weight-bold">{{membersd.length}}</span>
+            </button>
+        </div>
+        <div class="col-6">
+            <p class="text-left text-danger text-uppercase">Deadline Anmeldung
+            </p>
+            <p class="text-left text-danger text-uppercase">
+                {{dlDays}} <span class="text-secondary dl-days">Tage</span> {{dlHours}} <span class="text-secondary dl-hours">Stunden</span> {{dlMinutes}} <span class="text-secondary dl-minutes">Minuten</span> {{dlSeconds}} <span class="text-secondary dl-seconds">Sekunden</span>
+            </p>
+            <div class="d-flex flex-row">
+                <div *ngIf="gameHasBall === true">
+                    <fa-icon icon="futbol" class="fa-btn" size="lg"></fa-icon>
+                    <fa-icon icon="check" class="fa-btn" size="lg"></fa-icon>
+                </div>
+                &nbsp;&nbsp;&nbsp;
+                <div *ngIf="gameHasCamisole === true">
+                    <fa-icon icon="tshirt" class="fa-btn" size="lg"></fa-icon>
+                    <fa-icon icon="check" class="fa-btn" size="lg"></fa-icon>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- BUTTON ZUSAGEN ABSAGEN -->
+    <div class="row no-gutters mb-2">
+        <div class="col-6">
+            <button type="button" class="btn btn-success btn-say" (click)="onMemberNewDlg(dlgzusage)">Zusagen</button>
+        </div>
+        <div class="col-5">
+            <!-- <button type="button" class="btn btn-danger btn-say" data-toggle="modal" data-target=".dlg-absage">Absagen</button> -->
+            <button type="button" class="btn btn-danger btn-say" (click)="onMemberDeclineDlg(dlgabsage)">Absagen</button>
+        </div>
+        <div class="col-1">
+        </div>
+    </div>
+    <p></p>
+
+    <!-- MEMBERS PLAY -->
+    <div *ngFor="let member of membersa; let i=index">
+        <div class="row no-gutters">
+            <div class="col-11">
+                <div class="d-flex flex-row">
+                    <div class="">
+                        <div class="btn btn-round text-success border-success font-weight-bold">{{i+1}}</div>
+                    </div>
+                    <div class="bulk d-flex align-items-center bg-success" style="width:100%; margin:2px;">
+                        <div class="mr-auto">{{member.nick}}
+                        </div>
+                        <a class="fa-button" *ngIf="member.camisole === true">
+                            <fa-icon icon="tshirt" class="fa-btn" size="lg"></fa-icon>
+                        </a>
+                        <a class="fa-button" *ngIf="member.ball === true">
+                            <fa-icon icon="futbol" class="fa-btn" size="lg"></fa-icon>
+                        </a>
+                        <a class="fa-button" role="button" (click)="onSelectedMemberDecline(member)">
+                            <fa-icon icon="times-circle" class="fa-btn" size="lg"></fa-icon>
+                        </a>
+                        <a class="fa-button" role="button" (click)="onSelectedMemberEditDlg(member, dlgzusage)">
+                            <fa-icon icon="edit" class="fa-btn" size="lg"></fa-icon>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-1">
+
+            </div>
+        </div>
+    </div>
+
+    <!-- MIN MAX -->
+    <div class="row no-gutters">
+        <div class="col-11">
+            <div *ngIf="membersa.length < game.min" class="d-flex">
+                <div class="px-4">MIN {{game.min}}</div>
+                <hr class="my-auto flex-grow-1">
+                <div class="px-4">MIN {{game.min}}</div>
+            </div>
+            <div *ngIf="membersa.length >= game.min" class="d-flex">
+                <div class="px-4">MIN {{game.min}} erreicht</div>
+                <hr class="my-auto flex-grow-1">
+                <div class="px-4">MIN {{game.min}} erreicht</div>
+            </div>
+            <div *ngIf="membersa.length < game.max" class="d-flex">
+                <div class="px-4">MAX {{game.max}}</div>
+                <hr class="my-auto flex-grow-1">
+                <div class="px-4">MAX {{game.max}}</div>
+            </div>
+            <div *ngIf="membersa.length >= game.max" class="d-flex">
+                <div class="px-4">MAX {{game.max}} erreicht</div>
+                <hr class="my-auto flex-grow-1">
+                <div class="px-4">MAX {{game.max}} erreicht</div>
+            </div>
+            <div *ngIf="membersi.length > 0" class="d-flex">
+                <div class="px-4">Noch zusagen</div>
+                <hr class="my-auto flex-grow-1">
+                <div class="px-4">Noch zusagen</div>
+            </div>
+        </div>
+        <div class="col-1"></div>
+    </div>
+
+    <!-- MEMBERS WAITING -->
+    <div *ngFor="let member of membersi; let i=index">
+        <div class="row no-gutters">
+            <div class="col-11">
+                <div class="d-flex flex-row">
+                    <div>
+                        <div class="btn btn-round text-secondary border-secondary font-weight-bold">{{i+1}}</div>
+                    </div>
+                    <div class="bulk d-flex align-items-center bg-secondary" style="width:100%; margin:2px;">
+                        <div class="mr-auto">{{member.nick}}
+                        </div>
+                        <a *ngIf="membersa.length < game.max" class="fa-button " role="button" (click)="onSelectedMemberAccept(member)">
+                            <fa-icon icon="check-circle" class="fa-btn" size="lg"></fa-icon>
+                        </a>
+                        <a class="fa-button" role="button" (click)="onSelectedMemberDecline(member)">
+                            <fa-icon icon="times-circle" class="fa-btn" size="lg"></fa-icon>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-1">
+                <!-- <div class="btn btn-outline-dark">
+                    <fa-icon icon="edit" class="" size="1x"></fa-icon>
+                </div> -->
+            </div>
+        </div>
+    </div>
+    <div class="row no-gutters">
+        <div class="col-11">
+            <div *ngIf="membersd.length > 0" class="d-flex">
+                <div class="px-4">ABGESAGT {{membersd.length}}</div>
+                <hr class="my-auto flex-grow-1">
+                <div class="px-4">ABGESAGT {{membersd.length}}</div>
+            </div>
+        </div>
+        <div class="col-1"></div>
+    </div>
+
+    <!-- MEMBERS DECLINE -->
+    <div *ngFor="let member of membersd; let i=index">
+        <div class="row no-gutters">
+            <div class="col-11">
+                <div class="d-flex flex-row">
+                    <div>
+                        <div class="btn btn-round text-danger border-danger font-weight-bold">{{i+1}}</div>
+                    </div>
+                    <div class="bulk d-flex align-items-center bg-danger" style="width:100%; margin:2px;">
+                        <div class="mr-auto">{{member.nick}}
+                        </div>
+                        <a *ngIf="membersa.length < game.max" class="fa-button " role="button" (click)="onSelectedMemberAccept(member)">
+                            <fa-icon icon="check-circle" class="fa-btn" size="lg"></fa-icon>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-1">
+                <!-- <div class="btn btn-outline-dark">
+                    <fa-icon icon="edit" class="" size="1x"></fa-icon>
+                </div> -->
+            </div>
+        </div>
+    </div>
+    <p></p>
+
+</div>
+
+<!-- DIALOG -->
+<!-- ******************************** -->
+<!-- ZUSAGE -->
+<!-- <div class="modal fade dlg-zusage" tabindex="-1" role="dialog" aria-labelledby="dlg-zusage" aria-hidden="true"> -->
+<ng-template #dlgzusage let-modal>
+    <!-- <div class="modal-dialog "> -->
+    <!-- <div class="modal-content"> -->
+    <div class="modal-header">
+        <span class="dlg-title-zusage">ZUSAGE</span>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('close')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body bg-secondary">
+        <!-- <div id="carousel-zusage" class="carousel slide" data-ride="carousel" data-interval="0" data-keyboard="true"> -->
+        <ngb-carousel #dlgzusageCarousel="ngbCarousel">
+            <!-- <ol class="carousel-indicators">
+                <li data-target="#carousel-zusage" data-slide-to="0" class="active"></li>
+                <li data-target="#carousel-zusage" data-slide-to="1"></li>
+                <li data-target="#carousel-zusage" data-slide-to="2"></li>
+            </ol> -->
+            <!-- <div class="carousel-inner"> -->
+            <!-- <div class="carousel-item active"> -->
+            <ng-template ngbSlide>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-1"></div>
+                        <div class="col-10">
+                            <h3>Wie heißt du?</h3>
+                            <div class="input-group mb-3">
+                                <!-- [(ngModel)]="memberNew.nick" -->
+                                <!-- <input type="text" class="form-control" data-toggle="dropdown" placeholder="Name" aria-label="Name" aria-describedby="basic-addon2" [formControl]="memberNickInput" autofocus id="dlg-member-new-nick"> -->
+                                <input type="text" class="form-control" placeholder="Name" ngbAutofocus [(ngModel)]="memberNew.nick" [ngbTypeahead]="memberNickSearch" (keyup.enter)="dlgzusageCarousel.next()">
+                                <!-- <div class="dropdown-menu w-100 dd-member-suggestion">
+                                        <h6 class="dropdown-header"></h6>
+                                        <div class="dropdown-divider"></div>
+                                    </div> -->
+                                <div class="input-group-append">
+                                    <div class="btn-group position-static">
+                                        <a class="btn fa-button" role="button" role="button" (click)="dlgzusageCarousel.next()">
+                                            <fa-icon icon="arrow-right" class="fa-btn" size="lg"></fa-icon>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-1"></div>
+                    </div>
+                </div>
+            </ng-template>
+            <!-- </div> -->
+            <!-- <div class="carousel-item"> -->
+            <ng-template ngbSlide>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-1"></div>
+                        <div class="col-10 text-center">
+                            <h3>Bringst du einen Ball mit?</h3>
+                            <label class="switch">
+                                          <input type="checkbox" autofocus [(ngModel)]="memberNew.ball" id="dlg-member-new-ball">
+                                          <span class="slider round"></span>
+                                        </label>
+                            <a class="btn fa-button" role="button" role="button" (click)="dlgzusageCarousel.next()">
+                                <fa-icon icon="arrow-right" class="fa-btn" size="lg"></fa-icon>
+                            </a>
+                        </div>
+                        <div class="col-1"></div>
+                    </div>
+                </div>
+                <!-- </div> -->
+            </ng-template>
+            <!-- <div class="carousel-item"> -->
+            <ng-template ngbSlide>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-1"></div>
+                        <div class="col-10 text-center">
+                            <h3>Bringst du Leibchen mit?</h3>
+                            <label class="switch">
+                                    <input type="checkbox" autofocus [(ngModel)]="memberNew.camisole" id="dlg-member-new-camisole">
+                                    <span class="slider round"></span>
+                                </label>
+                            <!-- <a class="btn fa-button dlg-zusage-new-ok" (click)="onMemberNewDlgOk()" role="button"> -->
+                            <a *ngIf="memberDlg===1" class="btn fa-button dlg-zusage-new-ok" (click)="modal.close('oknew')" role="button">
+                                <fa-icon icon="check-circle" class="fa-btn" size="lg"></fa-icon>
+                            </a>
+                            <!-- <a class="btn fa-button dlg-zusage-edit-ok" role="button" (click)="onSelectedMemberEditDlgOk()"> -->
+                            <a *ngIf="memberDlg===2" class="btn fa-button dlg-zusage-edit-ok" role="button" (click)="modal.close('okedit')">
+                                <fa-icon icon="edit" class="fa-btn" size="lg"></fa-icon>
+                            </a>
+                        </div>
+                        <div class="col-1"></div>
+                    </div>
+                </div>
+            </ng-template>
+            <!-- </div> -->
+            <!-- </div> -->
+        </ngb-carousel>
+        <!-- </div> -->
+    </div>
+    <!-- </div> -->
+    <!-- </div> -->
+</ng-template>
+<!-- </div> -->
+
+
+<!-- ABSAGE -->
+<!-- <div class="modal fade dlg-absage" tabindex="-1" role="dialog" aria-labelledby="dlg-absage" aria-hidden="true"> -->
+<ng-template #dlgabsage let-modal>
+    <!-- <div class="modal-dialog "> -->
+    <!-- <div class="modal-content"> -->
+    <div class="modal-header">
+        <span class="modal-title">ABSAGE</span>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('close')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body bg-danger">
+        <div class="container">
+            <div class="row">
+                <div class="col-1"></div>
+                <div class="col-10">
+                    <h3>Wie heißt du?</h3>
+                    <div class="input-group mb-3">
+                        <!-- <input type="text" class="form-control" placeholder="Name" aria-label="Name" aria-describedby="basic-addon2" autofocus [(ngModel)]="memberNew.nick" id="dlg-member-decline-nick" (keyup.enter)="onMemberDecline()"> -->
+                        <input type="text" class="form-control" placeholder="Name" ngbAutofocus [(ngModel)]="memberNew.nick" [ngbTypeahead]="memberNickSearch" (keyup.enter)="modal.close('ok')">
+                        <div class="input-group-append">
+                            <!-- <a class="btn btn-info" role="button" id="dlg-member-decline-nick" (click)="onMemberDecline()"> -->
+                            <a class="btn fa-button" (click)="modal.close('ok')" role="button">
+                                <fa-icon icon="check-circle" class=""></fa-icon>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-1"></div>
+            </div>
+        </div>
+    </div>
+    <!-- </div> -->
+    <!-- </div> -->
+    <!-- </div> -->
+</ng-template>
+
+<app-a-footer></app-a-footer>

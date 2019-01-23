@@ -1,0 +1,22 @@
+
+<app-a-header></app-a-header>
+
+<div class="container">
+  <p class="path">
+    Orte
+    <span class="text-danger">&nbsp;&gt;&gt;&nbsp;</span>
+    Spielstätten
+  </p>
+  <div class="row">
+    <div class="col-6">
+      <h3>Spielstätten</h3>
+    </div>
+    <div class="col-6"></div>
+  </div>
+   <div *ngFor="let place of places">
+    <app-place-list-item [place]="place"></app-place-list-item>
+  </div>
+  
+</div>
+
+<app-a-footer></app-a-footer>

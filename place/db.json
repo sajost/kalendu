@@ -1,0 +1,906 @@
+{
+  "places": [
+    {
+      "id": 1,
+      "title": "Soccer Center",
+      "status": 1,
+      "info": "",
+      "city": "Bonn",
+      "zip": "53123",
+      "state": "",
+      "street": "Bonner Logsweg",
+      "nr": "131",
+      "sports": [
+        {
+          "title": "Fussbal",
+          "typ": "futbol"
+        },
+        {
+          "title": "Eisstock",
+          "typ": "hockey-puck"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "title": "Kasserne",
+      "status": 1,
+      "info": "Indoor Soccer Halle",
+      "city": "Euskirchen",
+      "zip": "53879",
+      "state": "",
+      "street": "Kommerne Straße",
+      "nr": "12",
+      "sports": [
+        {
+          "title": "Fussbal",
+          "typ": "futbol"
+        }
+      ]
+    }
+  ],
+  "groups": [
+    {
+      "id": 1,
+      "place_id": 1,
+      "title": "Reinhold-Gruppe",
+      "min": 8,
+      "max": 12,
+      "deadline": 48,
+      "members": [
+        {
+          "nick": "Alex S.",
+          "email": "as@gmail.com"
+        },
+        {
+          "nick": "Reinhold",
+          "email": "reinhold@ggmx.de"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "place_id": 1,
+      "title": "Mathias-Gruppe",
+      "min": 8,
+      "max": 12,
+      "deadline": 48,
+      "members": [
+        {
+          "nick": "Alex S.",
+          "email": "as@gmail.com"
+        },
+        {
+          "nick": "Mathias",
+          "email": "mathias@gmx.de"
+        },
+        {
+          "nick": "Norbert",
+          "email": "norbert@web.de"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "place_id": 2,
+      "title": "Sascha-Jost-GG",
+      "min": 8,
+      "max": 12,
+      "deadline": 48,
+      "members": [
+        {
+          "nick": "Alex",
+          "email": "as@gmail.com"
+        },
+        {
+          "nick": "Sascha",
+          "email": "sss@ggmx.de"
+        },
+        {
+          "nick": "Patrick",
+          "email": "ppp@ggmx.de"
+        }
+      ]
+    }
+  ],
+  "games": [
+    {
+      "members": [
+        {
+          "nick": "Alex Sa.",
+          "email": "",
+          "play": 9,
+          "camisole": false,
+          "ball": false
+        },
+        {
+          "nick": "Reinhold",
+          "email": "",
+          "play": 1,
+          "camisole": false,
+          "ball": true
+        },
+        {
+          "nick": "Buka",
+          "email": "",
+          "play": 1,
+          "camisole": false,
+          "ball": false
+        },
+        {
+          "nick": "Spok",
+          "email": "",
+          "play": 1,
+          "camisole": false,
+          "ball": false
+        },
+        {
+          "nick": "Bary",
+          "email": "",
+          "play": 1,
+          "camisole": false,
+          "ball": false
+        },
+        {
+          "nick": "Batman",
+          "email": "",
+          "play": 1,
+          "camisole": false,
+          "ball": false
+        },
+        {
+          "nick": "Flash2",
+          "email": "",
+          "play": 9,
+          "camisole": false,
+          "ball": false
+        },
+        {
+          "nick": "Green Arraw",
+          "email": "",
+          "play": 1,
+          "camisole": false,
+          "ball": false
+        },
+        {
+          "nick": "Zoom",
+          "email": "",
+          "play": 1,
+          "camisole": false,
+          "ball": false
+        },
+        {
+          "nick": "jjjj",
+          "email": "",
+          "play": 9,
+          "camisole": false,
+          "ball": false
+        },
+        {
+          "nick": "ggg",
+          "email": "",
+          "play": 9,
+          "camisole": false,
+          "ball": false
+        },
+        {
+          "nick": "asd",
+          "email": "",
+          "play": 9,
+          "camisole": false,
+          "ball": false
+        },
+        {
+          "nick": "raba",
+          "email": "",
+          "play": 0,
+          "camisole": false,
+          "ball": false
+        },
+        {
+          "nick": "yesa",
+          "email": "",
+          "play": 9,
+          "camisole": false,
+          "ball": false
+        },
+        {
+          "nick": "baba",
+          "email": "",
+          "play": 9,
+          "camisole": true,
+          "ball": true
+        },
+        {
+          "nick": "TTT4",
+          "email": "",
+          "play": 9,
+          "camisole": false,
+          "ball": false
+        },
+        {
+          "nick": "Alex Sa.",
+          "email": "",
+          "play": 9,
+          "camisole": false,
+          "ball": false
+        },
+        {
+          "nick": "Buka2",
+          "email": "",
+          "play": 9,
+          "camisole": false,
+          "ball": false
+        },
+        {
+          "nick": "TTT2",
+          "email": "",
+          "play": 9,
+          "camisole": false,
+          "ball": false
+        },
+        {
+          "nick": "TTT3",
+          "email": "",
+          "play": 9,
+          "camisole": false,
+          "ball": false
+        },
+        {
+          "nick": "TTT4",
+          "email": "",
+          "play": 9,
+          "camisole": false,
+          "ball": false
+        },
+        {
+          "nick": "asd2",
+          "email": "",
+          "play": 9,
+          "camisole": false,
+          "ball": false
+        },
+        {
+          "nick": "Flash2",
+          "email": "",
+          "play": 9,
+          "camisole": false,
+          "ball": false
+        },
+        {
+          "nick": "Zoom2",
+          "email": "",
+          "play": 9,
+          "camisole": false,
+          "ball": false
+        },
+        {
+          "nick": "Super Man",
+          "email": "",
+          "play": 1,
+          "camisole": false,
+          "ball": true
+        }
+      ],
+      "id": 1,
+      "group_id": 1,
+      "place_id": 1,
+      "dt": "2019-01-05T18:00:00.000Z",
+      "min": 8,
+      "max": 12,
+      "deadline": 48
+    },
+    {
+      "members": [
+        {
+          "nick": "Alex B",
+          "email": "",
+          "play": 1,
+          "camisole": false,
+          "ball": false
+        },
+        {
+          "nick": "Reinhold",
+          "email": "",
+          "play": 1,
+          "camisole": false,
+          "ball": false
+        },
+        {
+          "nick": "Spok",
+          "email": "",
+          "play": 1,
+          "camisole": false,
+          "ball": false
+        },
+        {
+          "nick": "Bary",
+          "email": "",
+          "play": 1,
+          "camisole": false,
+          "ball": false
+        },
+        {
+          "nick": "Batman",
+          "email": "",
+          "play": 1,
+          "camisole": false,
+          "ball": false
+        },
+        {
+          "nick": "Flash",
+          "email": "",
+          "play": 1,
+          "camisole": false,
+          "ball": false
+        },
+        {
+          "nick": "Green Arraw",
+          "email": "",
+          "play": 1,
+          "camisole": false,
+          "ball": false
+        },
+        {
+          "nick": "Zoom",
+          "email": "",
+          "play": 1,
+          "camisole": false,
+          "ball": false
+        },
+        {
+          "nick": "Bary",
+          "email": "",
+          "play": 1,
+          "camisole": true,
+          "ball": true
+        },
+        {
+          "nick": "Spok",
+          "email": "",
+          "play": 1,
+          "camisole": false,
+          "ball": false
+        },
+        {
+          "nick": "kake",
+          "email": "",
+          "play": 9,
+          "camisole": true,
+          "ball": true
+        },
+        {
+          "nick": "Alex B",
+          "email": "",
+          "play": 1,
+          "camisole": false,
+          "ball": false
+        }
+      ],
+      "id": 2,
+      "group_id": 1,
+      "place_id": 1,
+      "dt": "2019-01-12T18:00:00.000Z",
+      "min": 8,
+      "max": 12,
+      "deadline": 48,
+      "play": 1
+    },
+    {
+      "members": [
+        {
+          "nick": "Alex S.",
+          "email": "",
+          "play": 0,
+          "camisole": false,
+          "ball": false
+        },
+        {
+          "nick": "Reinhold",
+          "email": "",
+          "play": 0,
+          "camisole": false,
+          "ball": false
+        },
+        {
+          "nick": "Spok",
+          "email": "",
+          "play": 0,
+          "camisole": false,
+          "ball": false
+        },
+        {
+          "nick": "Bary",
+          "email": "",
+          "play": 0,
+          "camisole": false,
+          "ball": false
+        },
+        {
+          "nick": "Batman",
+          "email": "",
+          "play": 0,
+          "camisole": false,
+          "ball": false
+        },
+        {
+          "nick": "Flash",
+          "email": "",
+          "play": 0,
+          "camisole": false,
+          "ball": false
+        },
+        {
+          "nick": "Green Arraw",
+          "email": "",
+          "play": 0,
+          "camisole": false,
+          "ball": false
+        },
+        {
+          "nick": "Zoom",
+          "email": "",
+          "play": 0,
+          "camisole": false,
+          "ball": false
+        },
+        {
+          "nick": "Buka",
+          "email": "",
+          "play": 1,
+          "camisole": false,
+          "ball": true
+        }
+      ],
+      "id": 3,
+      "group_id": 1,
+      "place_id": 1,
+      "dt": "2019-01-19T18:00:00.000Z",
+      "min": 10,
+      "max": 12,
+      "deadline": 48,
+      "play": 1
+    },
+    {
+      "id": 5,
+      "group_id": 2,
+      "place_id": 1,
+      "dt": "2019-01-12T19:00:00",
+      "min": 8,
+      "max": 12,
+      "deadline": 48,
+      "members": [
+        {
+          "nick": "Norbert",
+          "play": 0
+        },
+        {
+          "nick": "Mathias",
+          "play": 0
+        },
+        {
+          "nick": "Spok",
+          "play": 0
+        },
+        {
+          "nick": "Bary",
+          "play": 0
+        },
+        {
+          "nick": "Batman",
+          "play": 0
+        },
+        {
+          "nick": "Flash",
+          "play": 0
+        },
+        {
+          "nick": "Green Arraw",
+          "play": 0
+        },
+        {
+          "nick": "Zoom",
+          "play": 0
+        }
+      ]
+    },
+    {
+      "members": [
+        {
+          "nick": "Alex Sa.",
+          "email": "",
+          "play": 0,
+          "camisole": false,
+          "ball": false
+        },
+        {
+          "nick": "Reinhold",
+          "email": "",
+          "play": 0,
+          "camisole": false,
+          "ball": false
+        },
+        {
+          "nick": "Buka",
+          "email": "",
+          "play": 0,
+          "camisole": false,
+          "ball": false
+        },
+        {
+          "nick": "Spok",
+          "email": "",
+          "play": 0,
+          "camisole": false,
+          "ball": false
+        },
+        {
+          "nick": "Bary",
+          "email": "",
+          "play": 0,
+          "camisole": false,
+          "ball": false
+        },
+        {
+          "nick": "Batman",
+          "email": "",
+          "play": 0,
+          "camisole": false,
+          "ball": false
+        },
+        {
+          "nick": "Flash2",
+          "email": "",
+          "play": 0,
+          "camisole": false,
+          "ball": false
+        },
+        {
+          "nick": "Green Arraw",
+          "email": "",
+          "play": 0,
+          "camisole": false,
+          "ball": false
+        },
+        {
+          "nick": "Zoom",
+          "email": "",
+          "play": 0,
+          "camisole": false,
+          "ball": false
+        },
+        {
+          "nick": "jjjj",
+          "email": "",
+          "play": 0,
+          "camisole": false,
+          "ball": false
+        },
+        {
+          "nick": "ggg",
+          "email": "",
+          "play": 0,
+          "camisole": false,
+          "ball": false
+        },
+        {
+          "nick": "asd",
+          "email": "",
+          "play": 0,
+          "camisole": false,
+          "ball": false
+        },
+        {
+          "nick": "raba",
+          "email": "",
+          "play": 0,
+          "camisole": false,
+          "ball": false
+        },
+        {
+          "nick": "yesa",
+          "email": "",
+          "play": 0,
+          "camisole": false,
+          "ball": false
+        },
+        {
+          "nick": "baba",
+          "email": "",
+          "play": 0,
+          "camisole": false,
+          "ball": false
+        },
+        {
+          "nick": "TTT4",
+          "email": "",
+          "play": 0,
+          "camisole": false,
+          "ball": false
+        },
+        {
+          "nick": "Alex Sa.",
+          "email": "",
+          "play": 0,
+          "camisole": false,
+          "ball": false
+        },
+        {
+          "nick": "Buka2",
+          "email": "",
+          "play": 0,
+          "camisole": false,
+          "ball": false
+        },
+        {
+          "nick": "TTT2",
+          "email": "",
+          "play": 0,
+          "camisole": false,
+          "ball": false
+        },
+        {
+          "nick": "TTT3",
+          "email": "",
+          "play": 0,
+          "camisole": false,
+          "ball": false
+        },
+        {
+          "nick": "TTT4",
+          "email": "",
+          "play": 0,
+          "camisole": false,
+          "ball": false
+        },
+        {
+          "nick": "asd2",
+          "email": "",
+          "play": 0,
+          "camisole": false,
+          "ball": false
+        },
+        {
+          "nick": "Flash2",
+          "email": "",
+          "play": 0,
+          "camisole": false,
+          "ball": false
+        },
+        {
+          "nick": "Zoom2",
+          "email": "",
+          "play": 0,
+          "camisole": false,
+          "ball": false
+        },
+        {
+          "nick": "Super Man",
+          "email": "",
+          "play": 0,
+          "camisole": false,
+          "ball": false
+        }
+      ],
+      "id": 6,
+      "group_id": 1,
+      "place_id": 1,
+      "dt": "2019-01-25T18:00:00.000Z",
+      "min": 8,
+      "max": 12,
+      "deadline": 48,
+      "title": "Freikick",
+      "dd": "2019-01-23T21:00:00.000Z",
+      "dtt": {
+        "hour": 19,
+        "minute": 0,
+        "second": 0
+      },
+      "ddt": {
+        "hour": 22,
+        "minute": 0,
+        "second": 0
+      },
+      "play": 1
+    },
+    {
+      "members": [
+        {
+          "nick": "Alex Sa.",
+          "email": "",
+          "play": 0,
+          "camisole": false,
+          "ball": false
+        },
+        {
+          "nick": "Reinhold",
+          "email": "",
+          "play": 0,
+          "camisole": false,
+          "ball": false
+        },
+        {
+          "nick": "Buka",
+          "email": "",
+          "play": 0,
+          "camisole": false,
+          "ball": false
+        },
+        {
+          "nick": "Spok",
+          "email": "",
+          "play": 0,
+          "camisole": false,
+          "ball": false
+        },
+        {
+          "nick": "Bary",
+          "email": "",
+          "play": 0,
+          "camisole": false,
+          "ball": false
+        },
+        {
+          "nick": "Batman",
+          "email": "",
+          "play": 0,
+          "camisole": false,
+          "ball": false
+        },
+        {
+          "nick": "Flash2",
+          "email": "",
+          "play": 0,
+          "camisole": false,
+          "ball": false
+        },
+        {
+          "nick": "Green Arraw",
+          "email": "",
+          "play": 0,
+          "camisole": false,
+          "ball": false
+        },
+        {
+          "nick": "Zoom",
+          "email": "",
+          "play": 0,
+          "camisole": false,
+          "ball": false
+        },
+        {
+          "nick": "jjjj",
+          "email": "",
+          "play": 0,
+          "camisole": false,
+          "ball": false
+        },
+        {
+          "nick": "ggg",
+          "email": "",
+          "play": 0,
+          "camisole": false,
+          "ball": false
+        },
+        {
+          "nick": "asd",
+          "email": "",
+          "play": 0,
+          "camisole": false,
+          "ball": false
+        },
+        {
+          "nick": "raba",
+          "email": "",
+          "play": 0,
+          "camisole": false,
+          "ball": false
+        },
+        {
+          "nick": "yesa",
+          "email": "",
+          "play": 0,
+          "camisole": false,
+          "ball": false
+        },
+        {
+          "nick": "baba",
+          "email": "",
+          "play": 0,
+          "camisole": false,
+          "ball": false
+        },
+        {
+          "nick": "TTT4",
+          "email": "",
+          "play": 0,
+          "camisole": false,
+          "ball": false
+        },
+        {
+          "nick": "Alex Sa.",
+          "email": "",
+          "play": 0,
+          "camisole": false,
+          "ball": false
+        },
+        {
+          "nick": "Buka2",
+          "email": "",
+          "play": 0,
+          "camisole": false,
+          "ball": false
+        },
+        {
+          "nick": "TTT2",
+          "email": "",
+          "play": 0,
+          "camisole": false,
+          "ball": false
+        },
+        {
+          "nick": "TTT3",
+          "email": "",
+          "play": 0,
+          "camisole": false,
+          "ball": false
+        },
+        {
+          "nick": "TTT4",
+          "email": "",
+          "play": 0,
+          "camisole": false,
+          "ball": false
+        },
+        {
+          "nick": "asd2",
+          "email": "",
+          "play": 0,
+          "camisole": false,
+          "ball": false
+        },
+        {
+          "nick": "Flash2",
+          "email": "",
+          "play": 0,
+          "camisole": false,
+          "ball": false
+        },
+        {
+          "nick": "Zoom2",
+          "email": "",
+          "play": 0,
+          "camisole": false,
+          "ball": false
+        },
+        {
+          "nick": "Super Man",
+          "email": "",
+          "play": 0,
+          "camisole": false,
+          "ball": false
+        }
+      ],
+      "id": 7,
+      "group_id": 1,
+      "place_id": 1,
+      "dt": "2019-01-31T18:00:00.000Z",
+      "min": 8,
+      "max": 12,
+      "deadline": 48,
+      "title": "Freikicker",
+      "dd": "2019-01-29T20:00:00.000Z",
+      "dtt": {
+        "hour": 19,
+        "minute": 0,
+        "second": 0
+      },
+      "ddt": {
+        "hour": 21,
+        "minute": 0,
+        "second": 0
+      },
+      "play": 1
+    }
+  ]
+}

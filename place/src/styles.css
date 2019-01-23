@@ -1,0 +1,10 @@
+/* You can add global styles to this file, and also import other style files */
+
+body {
+    min-height: 25rem;
+    padding-top: 4.5rem;
+}
+
+.path {
+    font-size: 0.7rem;
+}

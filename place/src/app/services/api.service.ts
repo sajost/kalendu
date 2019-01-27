@@ -12,7 +12,7 @@ import { Member } from '../model/member';
 // import { SessionService } from './session.service';
 
 
-const API_URL = environment.apiUrl;
+const API_URL = environment.apiUrlLocal;
 
 @Injectable()
 export class ApiService {

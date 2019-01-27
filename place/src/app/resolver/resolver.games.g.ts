@@ -21,7 +21,7 @@ export class ResolverGamesG implements Resolve<Observable<any>> {
         state: RouterStateSnapshot
     ): Observable<any> {
         return forkJoin([
-            this.placeDataService.getPlaceById(route.queryParams['place_id']),
+            this.placeDataService.getPlaceByGroupId(route.queryParams['group_id']),
             this.groupDataServer.getGroupById(route.queryParams['group_id']),
             this.gameDataService.getAllGamesByGroupId(route.queryParams['group_id']),
             this.gameDataService.getLastGameByGroupId(route.queryParams['group_id'])

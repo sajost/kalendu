@@ -5,7 +5,7 @@
 export const environment = {
   production: true,
   // URL of development API
-  apiUrl: 'http://localhost:3000',
+  apiUrlLocal: 'http://localhost:443',
   firebase: {
     apiKey: 'AIzaSyC0KGCE0YP8bIindAP-73B7Z_L1LWEtQTQ',
     authDomain: 'sport4u-df275.firebaseapp.com',
@@ -14,7 +14,7 @@ export const environment = {
     storageBucket: 'sport4u-df275.appspot.com',
     messagingSenderId: '455037071171'
   },
-  pushurl: 'http://localhost:3000',
+  pushurl: 'http://localhost:443',
   vapid: {
     'publicKey': 'BJcgsnnv4yYC_UeZ1cYhvFndCHa2s0fJYU-lnO_HKpki3g0RwGHZo3mTO0FkUuJPO2FtsLnPwdbiRyZpN7WRN9c',
     'privateKey': 'KNAWy9q9qx-6EZOD9_FSs0gJvKs5mqmEoXsX3QDgCG0'

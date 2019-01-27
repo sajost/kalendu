@@ -224,5 +224,30 @@
     </div>
 </ng-template>
 
+<!-- PUSH SUBSCRIBE -->
+<ng-template #dlgpussubsribe let-modal>
+    <div class="modal-header">
+        <span class="modal-title">Benachrichtigen?</span>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('close')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body bg-outline-dark">
+        <div class="container">
+            <div class="row">
+                <div class="col-1"></div>
+                <div class="col-10">
+                    <h3>Möchten Sie Benachritigen von der Gruppe erhalten, Errinerungen usw.?</h3>
+                </div>
+                <div class="col-1"></div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-danger" ngbAutofocus (click)="modal.close('dlgpussubsribe')">Ja</button>
+        <button type="button" class="btn btn-outline-dark" (click)="modal.close('dlgclose')">Nein</button>
+    </div>
+</ng-template>
+
 
 <app-a-footer></app-a-footer>

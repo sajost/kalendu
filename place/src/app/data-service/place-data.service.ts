@@ -54,6 +54,11 @@ export class PlaceDataService {
     return this.fb.getPlaceById(placeId);
   }
 
+  // Simulate GET /groups/:id/places/:id
+  getPlaceByGroupId(groupId: string): Observable<Place> {
+    return this.fb.getPlaceByGroupId(groupId);
+  }
+
   // Toggle complete
   togglePlaceStatus(place: Place, status: number) {
     place.status = status;

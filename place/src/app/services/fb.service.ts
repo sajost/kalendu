@@ -98,21 +98,47 @@ export class FbService {
         // return result;
         const placeObservables = places.map(place => {
           return this.afs
-          .collection<any>(`places/${place.id}/sports`)
-          .valueChanges().pipe(
-            map(sports => {
-              // console.log(sports);
-              // place.sports = sports;
-              // return place;
-              const rr = { ...place, sports: sports };
-              // console.log(rr);
-              return rr;
-              // return Object.assign(r, {sports});
-            }),
-            first()
-          );
+            .collection<any>(`places/${place.id}/sports`)
+            .valueChanges().pipe(
+              map(sports => {
+                // console.log(sports);
+                // place.sports = sports;
+                // return place;
+                const rr = { ...place, sports: sports };
+                // console.log(rr);
+                return rr;
+                // return Object.assign(r, {sports});
+              }),
+              first()
+            );
         });
         return forkJoin(...placeObservables);
+      }),
+      first()
+    );
+  }
+
+  // API: GET /groups/:id/places/:id
+  public getPlaceByGroupId(groupId: string): Observable<Place> {
+    return this.afs.doc<Group>('groups/' + groupId).snapshotChanges().pipe(
+      map(doc => {
+        const data = doc.payload.data();
+        const placeId = data.place_id;
+        return placeId;
+      }),
+      mergeMap(placeId => {
+        return this.afs.doc<Place>('places/' + placeId).snapshotChanges().pipe(
+          map(doc => {
+            // console.log(doc);
+            const data = doc.payload.data();
+            const id = doc.payload.id;
+            const r = { id, ...data };
+            const place = new Place(r);
+            // console.log(`places/${id}/sports`);
+            console.log(r);
+            return place;
+          })
+        );
       }),
       first()
     );
@@ -151,25 +177,25 @@ export class FbService {
     );
   }
 
-// API: GET /games/:group_id
+  // API: GET /games/:group_id
   public getAllGamesByGroupId(groupId: string): Observable<Game[]> {
     // console.log('groupId' + groupId);
     return this.afs.collection<Game>('games', ref =>
-    ref.where('group_id', '==', groupId)).snapshotChanges().pipe(
-      map(docs => docs.map(doc => {
-        console.log('getAllGamesByGroupId');
-        console.log(doc.payload.doc.data());
-        const data = doc.payload.doc.data() as Game;
-        // console.log(doc.payload.doc.data());
-        const id = doc.payload.doc.id;
-        const r = { id, ...data };
-        const game = new Game(r);
+      ref.where('group_id', '==', groupId)).snapshotChanges().pipe(
+        map(docs => docs.map(doc => {
+          console.log('getAllGamesByGroupId');
+          console.log(doc.payload.doc.data());
+          const data = doc.payload.doc.data() as Game;
+          // console.log(doc.payload.doc.data());
+          const id = doc.payload.doc.id;
+          const r = { id, ...data };
+          const game = new Game(r);
 
-        console.log(game);
-        return game;
-      })),
-      first()
-    );
+          console.log(game);
+          return game;
+        })),
+        first()
+      );
   }
 
   // API: GET /games/:id

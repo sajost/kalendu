@@ -86,6 +86,18 @@ export class GamesGComponent implements OnInit {
           }
         }
       );
+    this.swPush.notificationClicks.subscribe(payload => {
+      console.log(
+        'Action: ' + payload.action +
+        ' Notification data: ' + payload.notification.data +
+        ' Notification data.url: ' + payload.notification.data.url_group +
+        ' Notification data.body: ' + payload.notification.body
+      );
+      if (payload.action === 'open_group') {
+        console.log('open url -> ', payload.notification.data.url_group);
+        window.open(payload.notification.data.url_group, '_blank');
+      }
+    });
   }
 
   onGameNewDlg(dlg: any) {
@@ -188,13 +200,18 @@ export class GamesGComponent implements OnInit {
   }
 
   onSubscribeToNotifications() {
+    console.log('onSubscribeToNotifications');
     if (this.swPush.isEnabled) {
+      console.log('Push-Service ist an');
       this.swPush.requestSubscription({
         serverPublicKey: environment.vapid.publicKey,
       })
         .then(sub => {
+          Object.assign(sub, { group_id: this.group.id });
+          // Object.assign(sub, { place_id: this.place.id });
+          Object.assign(sub, { active: 1 });
           console.log('sub->', sub);
-          this.pushService.addPushSubscriber(sub, this.group.id).subscribe(res => {
+          this.pushService.addPushSubscriber(sub).subscribe(res => {
             console.log('[App] Add subscriber request answer', res);
           });
         })
@@ -204,9 +221,28 @@ export class GamesGComponent implements OnInit {
     }
   }
 
+  onUnsubscribeNotifications() {
+    console.log('onUnsubscribeNotifications');
+    if (this.swPush.isEnabled) {
+      this.swPush.requestSubscription({
+        serverPublicKey: environment.vapid.publicKey,
+      })
+        .then(sub => {
+          Object.assign(sub, { group_id: this.group.id });
+          Object.assign(sub, { active: 0 });
+          this.pushService.addPushSubscriber(sub).subscribe(res => {
+            console.log('[App] Add subscriber request answer', res);
+          });
+        })
+        .catch(err => console.error('Could not unsubscribe to notifications', err));
+    } else {
+      console.log('Push-Service ist in ihrem Browser ausgeschaltet');
+    }
+  }
+
   onSendNotifications() {
     console.log('sendNotifications1');
-    this.pushService.sendNotifications({info: '1'}).subscribe(res => {
+    this.pushService.sendNotifications(this.group.id, this.place.id).subscribe(res => {
       console.log('sendNotifications2', res);
     });
   }
